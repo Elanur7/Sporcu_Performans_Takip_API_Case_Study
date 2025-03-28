@@ -28,13 +28,7 @@ Gerekli bağımlılıklarını yükleyin:
 npm install
 ```
 
-### 3. JWT Paketini Yükleyin
-JWT kimlik doğrulama için tymon/jwt-auth paketini yükleyin:
-```bash
-composer require tymon/jwt-auth
-```
-
-### 4. .env Dosyasını Oluşturun
+### 3. .env Dosyasını Oluşturun
 .env.example dosyasını .env olarak kopyalayın ve dosyadaki veritabanı ve JWT ayarlarını kendi ortamınıza göre düzenleyin:
 ```bash
 cp .env.example .env
@@ -42,45 +36,20 @@ cp .env.example .env
 
 Örnek Veritabanı Ayarları:
 ```bash
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=veritabani_adi
+JWT_SECRET=secret_key
+DB_HOST="localhost"
 DB_USERNAME=kullanici_adi
 DB_PASSWORD=sifre
+DB_NAME=veritabani_adi
 ```
 
-JWT Ayarları:
-.env dosyasına şu satırı ekleyin veya düzenleyin (JWT Secret):
+### 4. DB Seed
+Otomatik veri tanımlamak için seeder dosyasını çalıştırın:
 ```bash
-JWT_SECRET=your_jwt_secret_key
+node runSeeder.js
 ```
 
-### 5. JWT Secret Anahtarını Oluşturun
-JWT'yi kullanabilmek için JWT secret anahtarını oluşturmanız gerekir. Aşağıdaki komutla bu anahtarı oluşturabilirsiniz:
-```bash
-php artisan jwt:secret
-```
-
-### 6. Veritabanı Migrations'larını Çalıştırın
-Veritabanı tablolarını oluşturmak için migrations'ları çalıştırın:
-```bash
-php artisan migrate
-```
-
-### 7. DB Seed
-Otomatik veri tanımlamak için seeder çalıştırın:
-```bash
-php artisan db:seed
-```
-
-### 8. Uygulama Anahtarını Ayarlayın
-Laravel için bir uygulama anahtarı ayarlayın:
-```bash
-php artisan key:generate
-```
-
-### 9. Çalıştırma
+### 5. Çalıştırma
 Projeyi çalıştırmak için aşağıdaki komutu kullanabilirsiniz:
 #### 1. Uygulamayı başlatmak için:
 ```bash
