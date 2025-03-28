@@ -52,7 +52,6 @@ node runSeeder.js
 
 ### 5. Çalıştırma
 Projeyi çalıştırmak için aşağıdaki komutu kullanabilirsiniz:
-#### 1. Uygulamayı başlatmak için:
 ```bash
 npm run dev
 ```
