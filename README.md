@@ -27,12 +27,13 @@ Gerekli bağımlılıklarını yükleyin:
 ```bash
 npm install
 ```
+Ardından nodemon yükleyin:
+```bash
+npm install -g nodemon
+```
 
 ### 3. .env Dosyasını Oluşturun
-.env.example dosyasını .env olarak kopyalayın ve dosyadaki veritabanı ve JWT ayarlarını kendi ortamınıza göre düzenleyin:
-```bash
-cp .env.example .env
-```
+.env.dosyasını oluşturun. Dosyadaki veritabanı ve JWT ayarlarını kendi ortamınıza göre düzenleyin:
 
 Örnek Veritabanı Ayarları:
 ```bash
