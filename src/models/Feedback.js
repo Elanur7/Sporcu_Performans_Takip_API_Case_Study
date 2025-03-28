@@ -31,11 +31,9 @@ const Feedback = sequelize.define('Feedback', {
   },
   response_message: {  
     type: DataTypes.STRING,
-    allowNull: false,  
   },
   response_date: { 
     type: DataTypes.DATE,
-    allowNull: false,  
   },
 });
 

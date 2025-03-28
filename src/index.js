@@ -1,11 +1,16 @@
 const express = require('express');
 require('dotenv').config();
+const bodyParser = require('body-parser');
 const sequelize = require('./config/database');
+const routes = require('./routes/routes');
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 app.use(express.json());
+
+app.use(bodyParser.json());
+app.use('/api', routes);
 
 // Veritabanı bağlantısını test et
 sequelize
