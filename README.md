@@ -23,9 +23,9 @@ cd Sporcu_Performans_Takip_API_Case_Study
 ```
 
 ### 2. Bağımlılıkları Yükleyin
-Composer ile PHP bağımlılıklarını yükleyin:
+Gerekli bağımlılıklarını yükleyin:
 ```bash
-composer install
+npm install
 ```
 
 ### 3. JWT Paketini Yükleyin
