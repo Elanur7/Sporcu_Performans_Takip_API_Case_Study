@@ -3,6 +3,10 @@ const athleteStatsService = require('../services/athleteService');
 const getAthleteStats = async (req, res) => {
   const athleteId = req.params.id;
 
+  if (req.user.role !== 'coach') {
+    return res.status(403).json({ error: 'Erişim yetkiniz yok.' }); 
+  }
+
   try {
     const stats = await athleteStatsService.getStatsByAthleteId(athleteId);
     return res.status(200).json(stats);
@@ -16,6 +20,10 @@ const getAthleteStats = async (req, res) => {
 
 const getAthleteProgress = async (req, res) => {
   const athleteId = req.params.id;
+
+  if (req.user.role !== 'coach') {
+    return res.status(403).json({ error: 'Erişim yetkiniz yok.' }); 
+  }
 
   try {
     const result = await athleteStatsService.getAthleteProgress(athleteId);
@@ -34,6 +42,11 @@ const getAthleteProgress = async (req, res) => {
 const getTeamStatsController = async (req, res) => {
   try {
     const coachId = req.user.id; 
+
+    if (req.user.role !== 'coach') {
+      return res.status(403).json({ error: 'Erişim yetkiniz yok.' }); 
+    }
+
     const stats = await athleteStatsService.getTeamStats(coachId);
 
     res.status(200).json(stats);

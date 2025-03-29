@@ -1,6 +1,7 @@
 const express = require('express');
 const RegisterController = require('../controllers/auth/registerControllers');
 const LoginController  = require('../controllers/auth/loginControllers');
+const UserController = require('../controllers/userControllers');
 const ProgramController = require('../controllers/programControllers'); 
 const FeedBackController = require('../controllers/feedbackControllers');
 const AthleteController = require('../controllers/athleteControllers');
@@ -9,6 +10,7 @@ const router = express.Router();
 
 router.post('/auth/register', RegisterController.register);
 router.post('/auth/login', LoginController.login);
+router.put('/users/:userId/role',verifyToken, UserController.updateUserByAdmin);
 
 router.get('/programs', verifyToken, ProgramController.getAllPrograms);
 router.post('/programs', verifyToken, ProgramController.createTrainingProgram);
@@ -24,6 +26,6 @@ router.post('/feedbacks/response', verifyToken, FeedBackController.addFeedbackRe
 
 router.get('/athletes/:id/stats', verifyToken, AthleteController.getAthleteStats);
 router.get('/athletes/:id/progress', verifyToken, AthleteController.getAthleteProgress);
-router.get('/athletes/team/stats', verifyToken, AthleteController.getTeamStatsController);
+router.get('/team/stats', verifyToken, AthleteController.getTeamStatsController);
 
 module.exports = router;

@@ -31,28 +31,32 @@ const getProgramById = async (programId, userId) => {
 
   let program;
 
-  if (user.role === 'coach') {
-    // Antrenör için programı getir 
+  if (user.role === "coach") {
+    // Antrenör herhangi bir programı getirebilir
     program = await TrainingProgram.findOne({
       where: {
         id: programId,
-        coach_id: userId, 
       },
       attributes: ['id', 'title', 'description', 'start_date', 'end_date'],
     });
-  } else if (user.role === 'athlete') {
-    // Sporcu için programı getir 
+
+  } else if (user.role === "athlete") {
     program = await AthleteProgram.findOne({
       where: {
         program_id: programId,
         athlete_id: userId,
-      },
-      include: [{
-        model: TrainingProgram,
-        as: 'trainingProgram',
-        attributes: ['id', 'title', 'description', 'start_date', 'end_date'],
-      }],
+      }
     });
+
+    if (program) {
+      const trainingProgram = await TrainingProgram.findOne({
+        where: { id: program.program_id },
+        attributes: ['id', 'title', 'description', 'start_date', 'end_date']
+      });
+
+      program = { ...program.toJSON(), trainingProgram };
+    }
+    
   } else {
     throw new Error('Geçersiz kullanıcı rolü.');
   }
@@ -157,7 +161,7 @@ const assignProgramToAthlete = async (coachId, athleteId, programId) => {
 const markProgramAsCompleted = async (athleteId, programId) => {
   try {
     // Sporcu ve program ilişkisini bulalım
-    const athleteProgram = await AthletePrograms.findOne({
+    const athleteProgram = await AthleteProgram.findOne({
       where: {
         athlete_id: athleteId,
         program_id: programId,
@@ -166,6 +170,10 @@ const markProgramAsCompleted = async (athleteId, programId) => {
 
     if (!athleteProgram) {
       throw new Error('Sporcu ve program ilişkisi bulunamadı.');
+    }
+
+    if (athleteProgram.status === "completed") {
+      throw new Error("Bu program zaten tamamlanmış.");
     }
 
     // Programın durumunu 'completed' olarak güncelle

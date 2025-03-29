@@ -1,5 +1,5 @@
-const sequelize = require('./config/database'); 
-const createAdminUserSeeder = require('./seeders/createAdminUser'); 
+const sequelize = require('./src/config/database'); 
+const createAdminUserSeeder = require('./src/seeders/createAdminUser'); 
 
 (async () => {
   try {

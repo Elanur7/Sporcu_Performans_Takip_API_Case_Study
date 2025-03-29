@@ -28,6 +28,10 @@ const getProgramById = async (req, res) => {
 
 const createTrainingProgram = async (req, res) => {
   try {
+    if (req.user.role !== "coach") {
+      return res.status(403).json({ error: "Bu işlemi gerçekleştirme yetkiniz yok." });
+    }
+    
     const coach_id = req.user.id; 
     const trainingProgramData = { ...req.body, coach_id }; 
 
@@ -61,8 +65,17 @@ const markProgramAsCompleted = async (req, res) => {
   const { athleteId, programId } = req.body;  
 
   try {
-    const result = await athleteStatsService.markProgramAsCompleted(athleteId, programId);
-    res.status(200).json(result);  
+    if (req.user.role !== "athlete") {
+      return res.status(403).json({ error: "Bu işlemi sadece sporcular gerçekleştirebilir." });
+    }
+
+    // Kullanıcının kendi programını mı güncelliyor kontrol et
+    if (req.user.id !== athleteId) {
+      return res.status(403).json({ error: "Kendi programınız dışında bir programı güncelleyemezsiniz." });
+    }
+
+    const result = await ProgramService.markProgramAsCompleted(athleteId, programId);
+    res.status(200).json(result); 
   } catch (error) {
     res.status(400).json({ error: error.message });  
   }
