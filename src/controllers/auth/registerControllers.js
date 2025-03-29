@@ -1,4 +1,5 @@
 const registerService = require('../../services/auth/registerServices');
+const logger = require('../../utils/logger');
 
 class RegisterController {
   static async register(req, res) {

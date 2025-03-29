@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const ProgramService = require('../services/programServices'); 
+const logger = require('../utils/logger');
 
 // Tüm programları listele (Sadece antrenör)
 const getAllPrograms = async (req, res) => {

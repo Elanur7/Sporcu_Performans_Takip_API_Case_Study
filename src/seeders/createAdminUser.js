@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
-const User = require('../models/User');  
+const User = require('../models/User'); 
+const logger = require('../utils/logger'); 
 
 module.exports = {
   up: async () => {

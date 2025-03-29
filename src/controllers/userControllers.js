@@ -1,4 +1,5 @@
 const userService = require('../services/userServices');
+const logger = require('../utils/logger');
 
 const updateUserByAdmin = async (req, res) => {
     const { userId } = req.params; 

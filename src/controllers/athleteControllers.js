@@ -1,5 +1,5 @@
 const athleteStatsService = require('../services/athleteService');
-const logger = require('./logger');
+const logger = require('../utils/logger');
 
 const getAthleteStats = async (req, res) => {
   const athleteId = req.params.id;
