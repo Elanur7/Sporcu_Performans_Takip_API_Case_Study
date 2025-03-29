@@ -7,7 +7,6 @@ Bu proje, Node.js(Express.js) kullanılarak geliştirilmiş bir REST API sistemi
 Projenin çalışabilmesi için aşağıdaki yazılımlar gereklidir:
 - Node.js(Express.js)
 - MySQL
-- JWT (JSON Web Token)
 
 ## Kurulum
 
