@@ -59,7 +59,7 @@ const getStatsByAthleteId = async (athleteId) => {
 
 const getAthleteProgress = async (athleteId) => {
   try {
-    const athlete = await AthletePrograms.findOne({ where: { id: athleteId } });
+    const athlete = await AthletePrograms.findOne({ where: { athlete_id: athleteId } });
 
     if (!athlete) {
       return { message: 'Sporcu bulunamadı.', progress: null };

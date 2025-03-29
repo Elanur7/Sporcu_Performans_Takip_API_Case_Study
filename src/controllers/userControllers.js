@@ -2,14 +2,17 @@ const userService = require('../services/userServices');
 
 const updateUserByAdmin = async (req, res) => {
     const { userId } = req.params; 
+    const adminId = req.user.id;
 
     if(req.body.name || req.body.password){
         return res.status(404).json({message:"Sadece rol bilgisi değiştirilebilir."});
     }
+
+    if (String(adminId) === String(userId)) {
+      return res.status(404).json({message:"Admin kendi rolünü güncelleyemez."});
+    }
   
     try {
-      const adminId = req.user.id;
-
       // Servis fonksiyonunu çağır
       const result = await userService.updateUserByAdmin(adminId, userId, req.body.role);
   

@@ -62,19 +62,14 @@ const assignProgram = async (req, res) => {
 
 // Sporcu Program Durumunu Güncelle
 const markProgramAsCompleted = async (req, res) => {
-  const { athleteId, programId } = req.body;  
+  const { programId } = req.body;  
 
   try {
     if (req.user.role !== "athlete") {
       return res.status(403).json({ error: "Bu işlemi sadece sporcular gerçekleştirebilir." });
     }
 
-    // Kullanıcının kendi programını mı güncelliyor kontrol et
-    if (req.user.id !== athleteId) {
-      return res.status(403).json({ error: "Kendi programınız dışında bir programı güncelleyemezsiniz." });
-    }
-
-    const result = await ProgramService.markProgramAsCompleted(athleteId, programId);
+    const result = await ProgramService.markProgramAsCompleted(req.user.id, programId);
     res.status(200).json(result); 
   } catch (error) {
     res.status(400).json({ error: error.message });  
