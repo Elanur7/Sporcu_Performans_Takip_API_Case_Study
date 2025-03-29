@@ -43,14 +43,14 @@ DB_PASSWORD=sifre
 DB_NAME=veritabani_adi
 ```
 
-### 4. DB Seed
-Otomatik veri tanımlamak için seeder dosyasını çalıştırın:
-```bash
-node runSeeder.js
-```
-
-### 5. Çalıştırma
+### 4. Çalıştırma
 Projeyi çalıştırmak için aşağıdaki komutu kullanabilirsiniz:
 ```bash
 npm run dev
+```
+
+### 5. DB Seed
+Otomatik admin verisini tanımlamak için seeder dosyasını çalıştırın:
+```bash
+node runSeeder.js
 ```
