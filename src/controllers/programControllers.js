@@ -10,6 +10,7 @@ const getAllPrograms = async (req, res) => {
       data: programs,
     });
   } catch (error) {
+    logger.error(`Hata oluştu: ${error.message}`);
     return res.status(403).json({ message: error.message });
   }
 };
@@ -22,6 +23,7 @@ const getProgramById = async (req, res) => {
     const program = await ProgramService.getProgramById(programId, userId);
     res.json(program);  
   } catch (error) {
+    logger.error(`Hata oluştu: ${error.message}`);
     res.status(400).json({ message: error.message });  
   }
 };
@@ -38,6 +40,7 @@ const createTrainingProgram = async (req, res) => {
     const createdProgram = await ProgramService.createTrainingProgram(trainingProgramData);
     res.status(201).json(createdProgram);
   } catch (error) {
+    logger.error(`Hata oluştu: ${error.message}`);
     res.status(500).json({ error: error.message });
   }
 };
@@ -53,7 +56,7 @@ const assignProgram = async (req, res) => {
       data: newAssignment,
     });
   } catch (error) {
-    console.error('Hata:', error);
+    logger.error(`Hata oluştu: ${error.message}`);
     return res.status(500).json({
       message: error.message || 'Bir hata oluştu.',
     });
@@ -72,6 +75,7 @@ const markProgramAsCompleted = async (req, res) => {
     const result = await ProgramService.markProgramAsCompleted(req.user.id, programId);
     res.status(200).json(result); 
   } catch (error) {
+    logger.error(`Hata oluştu: ${error.message}`);
     res.status(400).json({ error: error.message });  
   }
 };
@@ -101,7 +105,7 @@ const updateProgram = async (req, res) => {
 
     res.json(updatedProgram); 
   } catch (error) {
-    console.error(error);
+    logger.error(`Hata oluştu: ${error.message}`);
     res.status(500).json({ message: 'Bir hata oluştu.', error: error.message });
   }
 };
@@ -124,7 +128,7 @@ const deleteProgram = async (req, res) => {
 
     res.status(200).json({ message: 'Program başarıyla silindi.' });
   } catch (error) {
-    console.error(error);
+    logger.error(`Hata oluştu: ${error.message}`);
     res.status(500).json({ message: 'Bir hata oluştu.', error: error.message });
   }
 };

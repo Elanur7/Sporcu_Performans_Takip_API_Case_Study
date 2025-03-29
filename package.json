@@ -1,10 +1,10 @@
 {
   "name": "sporcu_performans_takip_api",
   "version": "1.0.0",
- "main": "index.js",
+  "main": "index.js",
   "scripts": {
-  "dev": "nodemon --watch \"./src/**/*\" -e js --exec \"node src/index.js\""
-},
+    "dev": "nodemon --watch \"./src/**/*\" -e js --exec \"node src/index.js\""
+  },
   "author": "",
   "license": "ISC",
   "description": "",
@@ -16,7 +16,8 @@
     "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.14.0",
-    "sequelize": "^6.37.6"
+    "sequelize": "^6.37.6",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"

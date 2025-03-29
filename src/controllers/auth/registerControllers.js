@@ -15,6 +15,7 @@ class RegisterController {
         token: newUser.token,
       });
     } catch (error) {
+      logger.error(`Hata oluştu: ${error.message}`);
       res.status(500).json({ message: error.message });
     }
   }

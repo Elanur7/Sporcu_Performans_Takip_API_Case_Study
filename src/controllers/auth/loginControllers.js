@@ -12,6 +12,7 @@ const login = async (req, res) => {
       token,
     });
   } catch (error) {
+    logger.error(`Hata oluştu: ${error.message}`);
     res.status(400).json({
       message: error.message,
     });

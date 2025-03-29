@@ -17,9 +17,9 @@ module.exports = {
         updatedAt: new Date(),
       });
 
-      console.log('Admin kullanıcısı başarıyla oluşturuldu!');
+      logger.info(`Admin kullanıcısı başarıyla oluşturuldu!`);
     } catch (error) {
-      console.error('Admin kullanıcısı oluşturulurken hata oluştu:', error);
+      logger.error(`Hata oluştu: ${error.message}`);
     }
   },
 
@@ -30,9 +30,9 @@ module.exports = {
         where: { role: 'admin' },
       });
 
-      console.log('Admin kullanıcısı başarıyla silindi!');
+      logger.info(`Admin kullanıcısı başarıyla silindi!`);
     } catch (error) {
-      console.error('Admin kullanıcısı silinirken hata oluştu:', error);
+      logger.error(`Hata oluştu: ${error.message}`);
     }
   }
 };

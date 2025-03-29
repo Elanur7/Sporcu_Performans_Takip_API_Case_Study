@@ -17,6 +17,7 @@ const getAllFeedbacks = async (req, res) => {
       data: feedbacks,
     });
   } catch (error) {
+    logger.error(`Hata oluştu: ${error.message}`);
     return res.status(500).json({
       message:
         "Geri bildirimler listelenirken bir hata oluştu: " + error.message,
@@ -46,6 +47,7 @@ const createFeedback = async (req, res) => {
       data: newFeedback,
     });
   } catch (error) {
+    logger.error(`Hata oluştu: ${error.message}`);
     return res.status(500).json({
       message: error.message,
     });
@@ -66,6 +68,7 @@ const addFeedbackResponse = async (req, res) => {
 
     res.status(200).json({ message: 'Geri bildirim yanıtı başarıyla eklendi', feedback });
   } catch (error) {
+    logger.error(`Hata oluştu: ${error.message}`);
     res.status(400).json({ message: error.message });
   }
 };

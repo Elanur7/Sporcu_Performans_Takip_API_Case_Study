@@ -18,6 +18,7 @@ const updateUserByAdmin = async (req, res) => {
   
       return res.status(200).json(result);
     } catch (error) {
+      logger.error(`Hata oluştu: ${error.message}`);
       return res.status(500).json({ error: error.message });
     }
 };

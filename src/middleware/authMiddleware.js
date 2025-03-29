@@ -18,6 +18,7 @@ const verifyToken = (req, res, next) => {
     req.user = decoded; // Kullanıcı bilgilerini req.user'a ekle
     next();
   } catch (err) {
+    logger.error(`Hata oluştu: ${err.message}`);
     return res.status(401).json({ message: "Geçersiz token." });
   }
 };
